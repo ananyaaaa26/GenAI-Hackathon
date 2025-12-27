@@ -1,21 +1,49 @@
-import { Activity } from 'lucide-react';
+// Navbar.jsx
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import HamburgerMenu from "./HamburgerMenu";
 
-export default function Navbar() {
+function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <nav className="fixed w-full z-50 bg-darkBg/80 backdrop-blur-md border-b border-white/5 px-6 py-4">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="flex items-center gap-2">
-          <Activity className="text-brand w-8 h-8" />
-          <span className="text-2xl font-black tracking-tighter">PRANALYSE</span>
+    <nav className="bg-white shadow-md fixed w-full z-50">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <Link to="/" className="text-violet font-bold text-2xl">
+          PRANALYSE
+        </Link>
+
+        {/* Desktop menu */}
+        <div className="hidden md:flex space-x-6 text-black font-semibold">
+          <Link to="/yoga" className="hover:text-violet">Yoga</Link>
+          <Link to="/physio" className="hover:text-blue">Physio</Link>
+          <Link to="/explore" className="hover:text-lavender">Explore</Link>
+          <Link to="/diet" className="hover:text-violet">Diet</Link>
+          <Link to="/profile" className="hover:text-blue">Profile</Link>
+          <Link to="/about" className="hover:text-lavender">About</Link>
+          <Link to="/contact" className="hover:text-violet">Contact</Link>
         </div>
-        <div className="hidden md:flex gap-8 items-center text-sm font-medium text-gray-400">
-          <a href="#features" className="hover:text-brand transition">Features</a>
-          <a href="#tech" className="hover:text-brand transition">Technology</a>
-          <button className="bg-brand text-black px-5 py-2 rounded-full font-bold hover:shadow-[0_0_20px_rgba(0,255,194,0.3)] transition">
-            Live Demo
+
+        {/* Mobile Hamburger */}
+        <div className="md:hidden">
+          <button onClick={() => setIsOpen(!isOpen)}>
+            <svg
+              className="w-8 h-8 text-black"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}></path>
+            </svg>
           </button>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {isOpen && <HamburgerMenu setIsOpen={setIsOpen} />}
     </nav>
   );
 }
+
+export default Navbar;
