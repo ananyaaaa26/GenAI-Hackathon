@@ -1,7 +1,7 @@
+// App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-// Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -12,15 +12,14 @@ import Physio from "./pages/Physio";
 import Explore from "./pages/Explore";
 import Diet from "./pages/Diet";
 import Profile from "./pages/Profile";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
     <Router>
-      <div className="App font-sans bg-white text-gray-900 min-h-screen">
-        {/* Navbar with Hamburger menu */}
-        <Navbar />
-
-        {/* Page content */}
+      <Navbar />
+      <div className="pt-16"> {/* Padding to prevent Navbar overlap */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/yoga" element={<Yoga />} />
@@ -28,11 +27,11 @@ function App() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/diet" element={<Diet />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
-
-        {/* Footer */}
-        <Footer />
       </div>
+      <Footer />
     </Router>
   );
 }
